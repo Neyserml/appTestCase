@@ -1,0 +1,6 @@
+<nav class="nav flex-column" id="sidebar">
+        <a class="nav-link " *ngFor="let obj of dataKeys" (click)="getInfoKey(obj.description_key)" >{{obj.description_key}}</a>
+</nav>
+<!-- <ul>
+        <li *ngFor="let obj of infoKeys" >{{obj.description_info}} </li>
+</ul> -->

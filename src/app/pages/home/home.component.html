@@ -1,0 +1,110 @@
+<h1>Manage data</h1>
+<br />
+<div class="row">
+  <div class="col-md-3">
+    <nav class="nav flex-column" id="sidebar">
+      <a
+        class="nav-link "
+        *ngFor="let obj of dataKeys"
+        (click)="getInfoKey(obj.id_key)"
+        >{{ obj.description_key }}</a
+      >
+    </nav>
+  </div>
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-10">
+            <label *ngIf="viewTitle"
+              ><strong>{{ title }}</strong></label
+            >
+          </div>
+          <div class="col-md-2">
+            <button
+              *ngIf="btnUpdate"
+              type="submit"
+              class="btn btn-primary mb-2 pull-right"
+              id="button-action"
+              (click)="update()"
+            >
+              Edit this
+            </button>
+            <button
+              *ngIf="btnSave"
+              type="submit"
+              class="btn btn-primary mb-2 pull-right"
+              id="button-action"
+              (click)="save()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+        <form [formGroup]="documentForm" #formControl="ngForm">
+          <input
+            type="hidden"
+            class="form-control col-md-5"
+            formControlName="id_key"
+          />
+          <div class="form-group" *ngIf="viewKeyName">
+            <label><strong>Key name</strong> </label>
+            <input
+              type="text"
+              class="form-control col-md-5"
+              formControlName="key_name"
+            />
+          </div>
+          <div class="form-group">
+            <label> <strong>Description</strong></label>
+            <textarea
+              class="form-control"
+              rows="2"
+              formControlName="descripcion"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label><strong>Type</strong></label>
+            <select class="form-control col-md-5" formControlName="type">
+              <option [value]="obj.id_datatype" *ngFor="let obj of datatype">{{
+                obj.description_datatype
+              }}</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="viewSensibility">
+            <label><strong>Sensitivity</strong></label
+            ><br />
+            <label for="">{{ message_personal }}</label>
+          </div>
+          <div class="form-check" *ngIf="viewCheck">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              formControlName="is_personal"
+            />
+            <label class="form-check-label">
+              In this personal data?
+            </label>
+          </div>
+        </form>
+        <div class="alert alert-primary" role="alert" id="title-table">
+          POSSIBLE VALUES
+        </div>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">VALUE</th>
+              <th scope="col">DESCRIPTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of dataReceivedPossible">
+              <td>{{ obj.value }}</td>
+              <td>{{ obj.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
