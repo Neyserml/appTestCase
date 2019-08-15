@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { isPromiseAlike } from "q";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -150,6 +151,81 @@ export class KeysService {
       description: "value  Key of user"
     }
   ];
+  request = [
+    {
+      id_request: 1,
+      date: "2017/09/21",
+      reason: "Data science algorithms",
+      estatus: "Pending"
+    },
+    {
+      id_request: 2,
+      date: "2017/08/13",
+      reason: "Stakeholder dashboards",
+      estatus: "Aproved"
+    },
+    {
+      id_request: 3,
+      date: "2017/07/03",
+      reason: "Email blast",
+      estatus: "Denied"
+    },
+    {
+      id_request: 4,
+      date: "2017/02/09",
+      reason: "Investigation",
+      estatus: "Approved"
+    },
+    {
+      id_request: 5,
+      date: "2017/09/21",
+      reason: "Data science algorithms",
+      estatus: "Pending"
+    },
+    {
+      id_request: 6,
+      date: "2017/08/13",
+      reason: "Stakeholder dashboards",
+      estatus: "Approved"
+    },
+    {
+      id_request: 7,
+      date: "2017/07/03",
+      reason: "Email blast",
+      estatus: "Denied"
+    },
+    {
+      id_request: 8,
+      date: "2017/02/09",
+      reason: "Investigation",
+      estatus: "Approved"
+    },
+    {
+      id_request: 9,
+      date: "2017/09/21",
+      reason: "Data science algorithms",
+      estatus: "Pending"
+    },
+    {
+      id_request: 10,
+      date: "2017/08/13",
+      reason: "Stakeholder dashboards",
+      estatus: "Approved"
+    },
+    {
+      id_request: 11,
+      date: "2017/07/03",
+      reason: "Email blast",
+      estatus: "Pending"
+    },
+    {
+      id_request: 12,
+      date: "2017/02/09",
+      reason: "Investigation",
+      estatus: "Approved"
+    }
+  ];
+
   constructor() {}
   public getKeys() {
     return new Promise(resolve => {
@@ -173,10 +249,6 @@ export class KeysService {
     return this.keys.filter(keys => keys.id_key == key);
   }
   public editKey(id_key, key_name, descripcion, type, is_personal) {
-    console.log("key", key_name);
-    console.log("descr", descripcion);
-    console.log("type", type);
-    console.log("personal", is_personal);
     return new Promise(resolve => {
       this.info_keys.map(function(dato) {
         if (dato.id_key == id_key) {
@@ -184,17 +256,18 @@ export class KeysService {
           dato.description_info = descripcion;
           dato.is_personal = is_personal;
         }
-        console.log("hola", dato);
         return dato;
       });
       this.keys.map(function(dato) {
         if (dato.id_key == id_key) {
           dato.description_key = key_name;
         }
-        console.log("mostrarrr", dato);
         return dato;
       });
       resolve(key_name);
     });
+  }
+  public getAllRequest() {
+    return this.request;
   }
 }

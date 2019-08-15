@@ -2,9 +2,10 @@
   background-color: #829615 !important;
   color: #fff !important;
 }
-.form-check-input {
-  background-color: orange !important;
-  color: #fff !important;
+.form-check-input::after {
+  background-color: green !important;
+  display: inline-block;
+  visibility: visible;
 }
 #button-action {
   background-color: #829615 !important;
@@ -18,4 +19,7 @@
 }
 .nav-link:hover {
   background-color: #829615;
+}
+.nav-link {
+  cursor: pointer;
 }

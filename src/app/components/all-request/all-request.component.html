@@ -1,0 +1,32 @@
+<div class="alert alert-primary" role="alert" id="title-table">
+  PENDING REQUESTS
+</div>
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">DATE</th>
+      <th scope="col">REASON</th>
+      <th scope="col">STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let obj of dataReceivedRequest">
+      <td>{{ obj.date }}</td>
+      <td>{{ obj.reason }}</td>
+      <td>
+        <div *ngIf="obj.date == '2017/09/21'" class="bagde-black">
+          {{ obj.estatus }}
+        </div>
+        <div *ngIf="obj.date == '2017/08/13'" class="bagde-green">
+          {{ obj.estatus }}
+        </div>
+        <div *ngIf="obj.date == '2017/07/03'" class="bagde-red">
+          {{ obj.estatus }}
+        </div>
+        <div *ngIf="obj.date == '2017/02/09'" class="bagde-black">
+          {{ obj.estatus }}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

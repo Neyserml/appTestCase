@@ -12,16 +12,20 @@ import { FormsModule } from "@angular/forms";
 
 // Componentes
 import { AppComponent } from "./app.component";
+import { RouterModule } from "@angular/router";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     HttpClientModule,
     APP_ROUTES,
     PagesModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

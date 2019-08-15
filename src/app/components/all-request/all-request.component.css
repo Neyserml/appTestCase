@@ -1,0 +1,43 @@
+.bagde-danger {
+  background-color: #ff5d5d;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  width: 30px;
+}
+.bagde-black {
+  background-color: #000 !important;
+  width: 80px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.bagde-green {
+  background-color: #829615 !important;
+  width: 80px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.bagde-red {
+  background-color: #e90505 !important;
+  width: 80px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+#title-table {
+  background-color: #829615 !important;
+  color: #fff !important;
+}

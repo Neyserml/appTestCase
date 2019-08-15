@@ -1,12 +1,15 @@
-.text-dark{
-    color: #829615 !important;  
-    text-decoration: none;
+.text-dark {
+  color: #829615 !important;
+  text-decoration: none;
 }
 .text-dark:hover {
-    background-color: #829615;
-    color: #fff !important;
+  background-color: #829615;
+  color: #fff !important;
 }
-.text-dark.active{
-    background-color: #829615;
-    color: #fff !important;
+/* .text-dark.active {
+  background-color: #829615;
+  color: #fff !important;
+} */
+::ng-deep .router-link-active {
+  background-color: #829615 !important;
 }
