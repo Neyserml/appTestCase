@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h5 class="modal-title">Update possible value</h5>
+  <button
+    type="button"
+    (click)="onNoClick()"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="documentForm">
+    <div class="form-group">
+      <label><b>Value</b></label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="data.value"
+        formControlName="value"
+      />
+    </div>
+    <div class="form-group">
+      <label><b>Description</b></label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="data.description"
+        formControlName="description"
+      />
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="update()">
+    Update
+  </button>
+</div>

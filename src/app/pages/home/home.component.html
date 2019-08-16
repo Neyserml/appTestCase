@@ -28,7 +28,7 @@
               id="button-action"
               (click)="update()"
             >
-              Edit this
+              <i class="fa fa-pencil"></i> Edit this
             </button>
             <button
               *ngIf="btnSave"
@@ -37,7 +37,7 @@
               id="button-action"
               (click)="save()"
             >
-              Save
+              <i class="fa fa-floppy-o"></i> Save
             </button>
           </div>
         </div>
@@ -76,9 +76,8 @@
             ><br />
             <label for="">{{ message_personal }}</label>
           </div>
-          <div class="form-check" *ngIf="viewCheck">
+          <div class="checkbox checkbox-warning " *ngIf="viewCheck">
             <input
-              id="check"
               class="form-check-input"
               type="checkbox"
               formControlName="is_personal"
@@ -96,14 +95,32 @@
             <tr>
               <th scope="col">VALUE</th>
               <th scope="col">DESCRIPTION</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let obj of dataReceivedPossible">
               <td>{{ obj.value }}</td>
               <td>{{ obj.description }}</td>
+              <td>
+                <i
+                  class="fa fa-pencil"
+                  (click)="
+                    viewEdit(obj.id_possible, obj.value, obj.description)
+                  "
+                  id="cursor-button"
+                ></i>
+              </td>
             </tr>
           </tbody>
+          <button
+            *ngIf="btnAddValues"
+            type="button"
+            (click)="viewModalAdd()"
+            class="button-add"
+          >
+            <i class="fa fa-plus" aria-hidden="true"></i> Add possible value
+          </button>
         </table>
       </div>
     </div>

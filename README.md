@@ -1,6 +1,18 @@
-# Appexamen
+# appTestCase
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
+
+#Application Architecture
+
+- appTestCase
+  - src
+    - app
+      - components -->This are the views, functional logic and styles of reusable components
+      - core --> Here are the services and the data
+      - pages --> Here are the views, functional logic and styles of the different pages
+      - shared --> Here are the views, functional logic and styles of reusable composts throughout the page as header,nopagefound, etc
+    - assets -->Public resources such as images, styles, documents and external.
+    - environments -->Environment environment variables.
 
 ## Development server
 

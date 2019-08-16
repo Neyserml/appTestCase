@@ -270,4 +270,29 @@ export class KeysService {
   public getAllRequest() {
     return this.request;
   }
+  public savePossibleValuesKey(id_key, value, descripcion) {
+    var idpossible = Math.round(Math.random() * 100);
+    return new Promise(resolve => {
+      this.possible_values.push({
+        id_possible: idpossible,
+        id_key: id_key,
+        value: value,
+        description: descripcion
+      });
+      resolve(id_key);
+    });
+  }
+  public editPossibleValues(idpossible, id_key, value, descripcion) {
+    return new Promise(resolve => {
+      this.possible_values.map(function(dato) {
+        if (dato.id_possible == idpossible) {
+          dato.id_key = id_key;
+          dato.value = value;
+          dato.description = descripcion;
+        }
+        return dato;
+      });
+      resolve(idpossible);
+    });
+  }
 }

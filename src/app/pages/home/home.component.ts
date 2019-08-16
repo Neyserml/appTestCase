@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { KeysService } from "../../core/services/keys/keys.service";
 import Swal from "sweetalert2";
+import { MatDialog } from "@angular/material";
+import { ModalAddComponent } from "../../components/modal-add/modal-add.component";
+import { ModalEditComponent } from "src/app/components/modal-edit/modal-edit.component";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -16,6 +19,7 @@ export class HomeComponent implements OnInit {
   public dataReceivedPossible: any;
   public datita;
   public btnUpdate: Boolean = true;
+  public btnAddValues: Boolean = false;
   public btnSave: Boolean = false;
   public viewCheck: Boolean = false;
   public viewKeyName: Boolean = false;
@@ -24,8 +28,10 @@ export class HomeComponent implements OnInit {
   public title: string;
   public message_personal: string = "";
   public documentForm: FormGroup;
-  constructor(private keysService: KeysService) {}
-
+  public idkeyBlogal;
+  constructor(private keysService: KeysService, public dialog: MatDialog) {
+    this.idkeyBlogal = 0;
+  }
   ngOnInit() {
     this.documentForm = new FormGroup({
       id_key: new FormControl(""),
@@ -38,6 +44,10 @@ export class HomeComponent implements OnInit {
     this.getdataKeys();
   }
   public update() {
+    if (this.documentForm.controls["key_name"].value == "") {
+      Swal.fire("Information", "You must select the key to edit", "error");
+      return false;
+    }
     this.btnSave = true;
     this.btnUpdate = false;
     this.viewCheck = true;
@@ -46,14 +56,15 @@ export class HomeComponent implements OnInit {
     this.viewSensibility = false;
   }
   public getInfoKey(idkey) {
+    this.btnAddValues = true;
     this.dataReceivedInfo = this.keysService.searchInfoKey(idkey);
     this.dataReceivedKey = this.keysService.searchKey(idkey);
     this.dataReceivedPossible = this.keysService.getPossiblevalues(idkey);
-    console.log("data posibles", this.dataReceivedPossible);
     this.dataReceivedKey.forEach((element: any) => {
       this.title = element.description_key;
       this.documentForm.controls["key_name"].setValue(element.description_key);
       this.documentForm.controls["id_key"].setValue(element.id_key);
+      this.idkeyBlogal = element.id_key;
     });
     this.dataReceivedInfo.forEach((element: any) => {
       this.documentForm.controls["type"].setValue(element.id_datatype);
@@ -69,7 +80,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
   public save() {
     let id_key = this.documentForm.controls["id_key"].value;
     let key_name = this.documentForm.controls["key_name"].value;
@@ -86,11 +96,8 @@ export class HomeComponent implements OnInit {
         this.documentForm.controls["key_name"].setValue("");
         this.documentForm.controls["descripcion"].setValue("");
         this.documentForm.controls["type"].setValue("");
-        Swal.fire(
-          "Información",
-          "La data fue actualizada correctamente",
-          "success"
-        );
+        this.dataReceivedPossible = [];
+        Swal.fire("Information", "The data was updated correctly", "success");
         this.geKeys();
       });
   }
@@ -102,6 +109,36 @@ export class HomeComponent implements OnInit {
   public getdataKeys() {
     return this.keysService.getdatatype().then(res => {
       this.datatype = res;
+    });
+  }
+
+  public viewModalAdd() {
+    const dialogRef = this.dialog.open(ModalAddComponent, {
+      width: "400px",
+      data: {
+        idkey: this.idkeyBlogal
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataReceivedPossible = this.keysService.getPossiblevalues(
+        this.idkeyBlogal
+      );
+    });
+  }
+  public viewEdit(idpossible, value, description) {
+    const dialogRef = this.dialog.open(ModalEditComponent, {
+      width: "400px",
+      data: {
+        idpossible: idpossible,
+        idkey: this.idkeyBlogal,
+        value: value,
+        description: description
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataReceivedPossible = this.keysService.getPossiblevalues(
+        this.idkeyBlogal
+      );
     });
   }
 }

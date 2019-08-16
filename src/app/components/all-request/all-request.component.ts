@@ -14,6 +14,5 @@ export class AllRequestComponent implements OnInit {
   }
   public getAllRequest() {
     this.dataReceivedRequest = this.keysService.getAllRequest();
-    console.log("Data", this.dataReceivedRequest);
   }
 }
